@@ -44,8 +44,12 @@ $chat-side_color: #ffffff;
     padding: 20px 20px 0;
 
     .group{
-      color: $chat-side_color;
       margin-bottom: 40px;
+
+      a {
+        color: $chat-side_color;
+        text-decoration: none;
+      }
 
       &__group-name {
         font-size: 15px;
