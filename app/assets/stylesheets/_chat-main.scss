@@ -52,6 +52,7 @@ $text_color: #434a54;
     height: calc(100vh - 100px - 90px);
     background-color: #fafafa;
     padding: 35px 40px;
+    overflow: scroll;
 
     .message {
       padding-bottom: 46px;
