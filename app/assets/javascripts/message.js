@@ -67,7 +67,6 @@ $(function(){
 
   var reloadMessages = function() {
     last_message_id = $('.message:last').data("message-id");
-    console.log(last_message_id);
     $.ajax({
       url: "api/messages",
       type: 'GET',
@@ -85,57 +84,60 @@ $(function(){
       }
     })
     .fail(function() {
-      console.log('error');
+      alert('error');
     });
   };
   var buildHTML = function(message) {
     if (message.content && message.image) {
-      var html = `<div class="message" data-message-id=` + message.id + `>` +
-        `<div class="message__upper-info">` +
-          `<div class="message__upper-info__talker">` +
-            message.user_name +
-          `</div>` +
-          `<div class="message__upper-info__date">` +
-            message.created_at +
-          `</div>` +
-        `</div>` +
-        `<div class="message__lower-info">` +
-          `<p class="message__text">` +
-            message.content +
-          `</p>` +
-          `<img src="` + message.image + `" class="lower-message__image" >` +
-        `</div>` +
-      `</div>`
+      var html = 
+      `<div class="message" data-message-id= ${message.id}>
+        <div class="message__upper-info">
+          <div class="message__upper-info__talker">
+            ${message.user_name}
+          </div>
+          <div class="message__upper-info__date">
+            ${message.created_at}
+          </div>
+        </div>
+        <div class="message__lower-info">
+          <p class="message__text">
+            ${message.content}
+          </p>
+          <img src=${message.image} class="lower-message__image" >
+        </div>
+      </div>`
     } else if (message.content) {
-      var html = `<div class="message" data-message-id=` + message.id + `>` +
-        `<div class="message__upper-info">` +
-          `<div class="message__upper-info__talker">` +
-            message.user_name +
-          `</div>` +
-          `<div class="message__upper-info__date">` +
-            message.created_at +
-          `</div>` +
-        `</div>` +
-        `<div class="message__lower-info">` +
-          `<p class="message__text">` +
-            message.content +
-          `</p>` +
-        `</div>` +
-      `</div>`
+      var html = 
+      `<div class="message" data-message-id=${message.id}>
+              <div class="message__upper-info">
+          <div class="message__upper-info__talker">
+            ${message.user_name}
+          </div>
+          <div class="message__upper-info__date">
+            ${message.created_at}
+          </div>
+        </div>
+        <div class="message__lower-info">
+          <p class="message__text">
+            ${message.content}
+          </p>
+        </div>
+      </div>`
     } else if (message.image) {
-      var html = `<div class="message" data-message-id=` + message.id + `>` +
-        `<div class="message__upper-info">` +
-          `<div class="message__upper-info__talker">` +
-            message.user_name +
-          `</div>` +
-          `<div class="message__upper-info__date">` +
-            message.created_at +
-          `</div>` +
-        `</div>` +
-        `<div class="message__lower-info">` +
-          `<img src="` + message.image + `" class="lower-message__image" >` +
-        `</div>` +
-      `</div>`
+      var html = 
+      `<div class="message" data-message-id=${message.id}>
+        <div class="message__upper-info">
+          <div class="message__upper-info__talker">
+            ${message.user_name}
+          </div>
+          <div class="message__upper-info__date">
+            ${message.created_at}
+          </div>
+        </div>
+        <div class="message__lower-info">
+          <img src=${message.image} class="lower-message__image" >
+        </div>
+      </div>`
     };
     return html;
   };
